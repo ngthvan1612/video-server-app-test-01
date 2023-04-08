@@ -29,16 +29,18 @@ services:
       - MONGO_HOST=mongodb
     volumes:
       - server_data:/data/db:rw
-  test:
+  tests:
+    image: python:3.7
+    build: .
     container_name: video-server-test
     depends_on:
       - rabbit
       - mongodb
-      - server
     links:
       - rabbit
       - mongodb
       - server
+    entrypoint: ['/bin/sh', 'start-test.sh']
 volumes:
   mongodb_data: {}
   server_data: {}
