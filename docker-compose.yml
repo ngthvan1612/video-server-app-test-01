@@ -29,6 +29,16 @@ services:
       - MONGO_HOST=mongodb
     volumes:
       - server_data:/data/db:rw
+  test:
+    container_name: video-server-test
+    depends_on:
+      - rabbit
+      - mongodb
+      - server
+    links:
+      - rabbit
+      - mongodb
+      - server
 volumes:
   mongodb_data: {}
   server_data: {}

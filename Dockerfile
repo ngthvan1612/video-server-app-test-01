@@ -10,6 +10,9 @@ python3 python3-dev python3-pip python3-setuptools python3-wheel
 # install video-server app
 WORKDIR /opt/video-server-app
 COPY ./ /opt/video-server-app
+
+RUN git config --global url."https://github.com".insteadOf git://github.com
+
 RUN pip3 install -r requirements.txt
 
 # run
